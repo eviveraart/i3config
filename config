@@ -1,3 +1,6 @@
+#prerequesites: https://github.com/rjekker/i3-battery-popup, 
+#sudo apt install i3-wm i3status i3blocks i3lock dmenu
+
 # i3 config file (v4)
 
 # TODO: audio based on possebilities, not hard coded.
@@ -41,7 +44,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 exec --no-startup-id xsetroot -solid "#000000"
 #auto-mute
 exec --no-startup-id pactl set-sink-mute 0 o
-
+#battery messages
+exec --no-startup-id i3-battery-popup
 # kill focused window
 bindsym $mod+w kill
 
@@ -89,10 +93,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+z split h
+bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+x split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -229,6 +233,8 @@ bar {
 }
 
 # Pulse Audio controls
+exec --no-startup-id set-sink-mute 0 0 # auto mute
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
@@ -242,8 +248,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-bindsym XF86MonBrightnessUp exec --no-startup-id "echo 1500 | tee /sys/class/backlight/intel_backlight/brightness"
-bindsym XF86MonBrightnessDown exec --no-startup-id "echo 400 | tee /sys/class/backlight/intel_backlight/brightness" 
+bindsym XF86MonBrightnessUp exec --no-startup-id "echo 1500 | sudo tee -a /sys/class/backlight/intel_backlight/brightness"
+bindsym XF86MonBrightnessDown exec --no-startup-id "echo 400 | sudo tee -a /sys/class/backlight/intel_backlight/brightness" 
 # border / titlebar
 new_window none
 hide_edge_borders both

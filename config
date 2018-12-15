@@ -42,7 +42,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 #set background
 #exec --no-startup-id xsetroot -solid "#000000"
-xsetbg -fullscreen /home/evi/Pictures/world_map_of_cpp_STL_algorithms.png
+xexec --no-startup-id setbg -fullscreen /home/evi/Pictures/world_map_of_cpp_STL_algorithms.png
 #auto-mute
 exec --no-startup-id pactl set-sink-mute 0 o
 #battery messages
